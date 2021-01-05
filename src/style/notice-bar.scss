@@ -1,0 +1,70 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+
+@include b(notice-bar) {
+  display: flex;
+  padding: $-notice-bar-padding;
+  align-items: center;
+  background: $-notice-bar-bg;
+  color: $-notice-bar-color;
+  font-size: $-notice-bar-fs;
+
+  @include e(left-icon) {
+    min-width: $-notice-bar-icon-min-width;
+    font-size: $-notice-bar-icon-size;
+  }
+  @include e(right-icon) {
+    min-width: 25px;
+    text-align: right;
+    font-size: $-notice-bar-close-size;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @include e(wrap) {
+    position: relative;
+    flex: 1;
+    height: 19px;
+    overflow: hidden;
+  }
+  @include e(content) {
+    position: absolute;
+    white-space: nowrap;
+    line-height: 1.58;
+
+    @include m(play) {
+      animation: notice-bar-play linear both;
+    }
+    @include m(play-infinite) {
+      animation: notice-bar-play-infinite linear infinite both;
+    }
+  }
+  @include m(ellipse) {
+    .wd-notice-bar__content {
+      position: static;
+      @include lineEllipsis;
+    }
+  }
+  @include m(wrap) {
+    padding: $-notice-bar-wrap-padding;
+
+    .wd-notice-bar__wrap {
+      height: auto;
+    }
+    .wd-notice-bar__content {
+      position: static;
+      white-space: normal;
+    }
+  }
+}
+
+@keyframes notice-bar-play {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes notice-bar-play-infinite {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

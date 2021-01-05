@@ -1,0 +1,99 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+
+@include b(cell) {
+  position: relative;
+  display: flex;
+  padding-left: $-cell-padding;
+  background-color: #fff;
+  text-decoration: none;
+  color: $-cell-title-color;
+  line-height: 1.43;
+  -webkit-tap-highlight-color: transparent;
+  
+  @include e(wrapper) {
+    position: relative;
+    display: flex;
+    flex: 1;
+    padding: $-cell-wrapper-padding;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  @include when(cell) {
+    .wd-cell__wrapper {
+      @include halfPixelBorder;
+    }
+    &:last-child .wd-cell__wrapper::after {
+      display: none;
+    }
+  }
+  @include e(left) {
+    font-size: $-cell-title-fs;
+    vertical-align: middle;
+    flex-shrink: 0;
+    margin-right: 20px;
+  }
+  @include e(label) {
+    margin-top: 3px;
+    font-size: $-cell-label-fs;
+    color: $-cell-label-color;
+  }
+  @include e(right) {
+    position: relative;
+    font-size: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  @include e(icon) {
+    position: relative;
+    min-width: $-cell-icon-size;
+    height: $-cell-icon-height;
+    line-height: $-cell-icon-height;
+    margin-right: $-cell-icon-right;
+    font-size: $-cell-icon-size;
+  }
+  @include e(value) {
+    display: block;
+    font-size: $-cell-value-fs;
+    color: $-cell-value-color;
+  }
+  @include e(arrow-right) {
+    display: block;
+    margin-left: 5px;
+    height: 20px;
+    min-width: $-cell-arrow-size;
+    line-height: 20px;
+    font-size: $-cell-arrow-size;
+    color: $-cell-arrow-color;
+  }
+  @include when(link) {
+    transition: background .2s;
+    -webkit-tap-highlight-color: $-cell-tap-bg;
+
+    &:active {
+      background: $-cell-tap-bg;
+    }
+  }
+  @include when(large) {
+    .wd-cell__title {
+      font-size: $-cell-title-fs-large;
+    }
+    .wd-cell__arrow-right {
+      height: 22px;
+      line-height: 22px;
+    }
+    .wd-cell__icon {
+      height: $-cell-icon-height-large;
+      line-height: $-cell-icon-height-large;
+    }
+  }
+  @include when(center) {
+    .wd-cell__wrapper {
+      align-items: center;
+    }
+  }
+}

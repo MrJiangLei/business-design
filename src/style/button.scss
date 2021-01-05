@@ -1,0 +1,255 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './loading.scss';
+@import './icon.scss';
+
+@mixin button-type-style ($normal, $active, $disabled) {
+  background: $normal;
+  color: #fff;
+  border-color: $normal;
+
+  &:active {
+    background: $active;
+  }
+  @include when(disabled) {
+    &:active {
+      background: $disabled;
+      color: #fff;
+    }
+    
+    opacity: 0.6;
+    background: $disabled;
+    border-color: $disabled;
+  }
+  .wd-button__loading {
+    color: #fff;
+  }
+  @include when(loading) {
+    background: $disabled;
+    border-color: $disabled;
+
+    &:active {
+      background: $disabled;
+      border-color: $disabled;
+    }
+  }
+  @include when(suck) {
+    border: none;
+    border-radius: 0;
+  }
+}
+
+@mixin button-plain-style ($normal, $active, $disabled) {
+  color: $normal;
+  border-color: $normal;
+  background: transparent;
+
+  &:active {
+    color: $active;
+    border-color: $active;
+    background: transparent;
+  }
+  @include when(disabled) {
+    color: $disabled;
+    border-color: $disabled;
+    background: transparent;
+  }
+  .wd-button__loading {
+    color: $disabled;
+  }
+  @include when(loading) {
+    background: transparent;
+  }
+}
+
+@include b(button) {
+  outline: none;
+  text-align: center;
+  -webkit-appearance: none;
+  outline: none;
+  background: transparent;
+  border: 1px solid $-button-border-color;
+  color: $-button-normal-color;
+  box-sizing: border-box;
+  transition: all .2s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    color: $-button-normal-active-color;
+    background: $-button-normal-active-bg;
+    border-color: $-button-normal-border-active-color;
+  }
+  @include when(disabled) {
+    color: $-button-normal-disabled-color;
+    background: $-button-normal-disabled-bg;
+    border-color: $-button-normal-border-disabled-color;
+    
+    &:active {
+      color: $-button-normal-disabled-color;
+      background: $-button-normal-disabled-bg;
+      border-color: $-button-normal-border-disabled-color;
+    }
+  }
+
+  @include e(loading) {
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: middle;
+    color: $-button-normal-disabled-color;
+  }
+  @include when(loading) {
+    color: $-button-normal-disabled-color;
+    background: $-button-normal-disabled-bg;
+    border-color: $-button-normal-border-disabled-color;
+  }
+
+  @include when(primary) {
+    @include button-type-style($-button-primary-color, $-button-primary-active-color, $-button-primary-disabled-color);
+  }
+  @include when(success) {
+    @include button-type-style($-button-success-color, $-button-success-active-color, $-button-success-disabled-color);
+  }
+  @include when(info) {
+    @include button-type-style($-button-info-color, $-button-info-active-color, $-button-info-disabled-color);
+  }
+  @include when(warning) {
+    @include button-type-style($-button-warning-color, $-button-warning-active-color, $-button-warning-disabled-color);
+  }
+  @include when(error) {
+    @include button-type-style($-button-error-color, $-button-error-active-color, $-button-error-disabled-color);
+  }
+
+  @include when(small) {
+    height: $-button-small-height;
+    padding: $-button-small-padding;
+    border-radius: $-button-small-radius;
+    font-size: $-button-small-fs;
+
+    @include when(round) {
+      border-radius: $-button-small-round-radius;
+    }
+    .wd-button__loading {
+      width: $-button-small-loading;
+      height: $-button-small-loading;
+    }
+  }
+  @include when(medium) {
+    height: $-button-medium-height;
+    padding: $-button-small-padding;
+    padding: $-button-medium-padding;
+    border-radius: $-button-medium-radius;
+    font-size: $-button-medium-fs;
+
+    @include when(round) {
+      border-radius: $-button-medium-round-radius;
+    }
+    .wd-button__loading {
+      width: $-button-medium-loading;
+      height: $-button-medium-loading;
+    }
+  }
+  @include when(large) {
+    height: $-button-large-height;
+    padding: $-button-large-padding;
+    border-radius: $-button-large-radius;
+    font-size: $-button-large-fs;
+
+    @include when(round) {
+      border-radius: $-button-large-round-radius;
+    }
+    .wd-button__loading {
+      width: $-button-large-loading;
+      height: $-button-large-loading;
+    }
+  }
+
+  @include when(text) {
+    border: none;
+    color: $-button-primary-color;
+    padding: 4px 0;
+
+    &:active {
+      color: $-button-primary-active-color;
+      background: transparent;
+    }
+    @include when(disabled) {
+      color: $-button-normal-disabled-color;
+      background: transparent;
+    }
+  }
+
+  @include when(plain) {
+    background: #fff;
+
+    @include when(primary) {
+      @include button-plain-style($-button-primary-color, $-button-primary-active-color, $-button-primary-disabled-color);
+    }
+    @include when(success) {
+      @include button-plain-style($-button-success-color, $-button-success-active-color, $-button-success-disabled-color);
+    }
+    @include when(info) {
+      @include button-plain-style($-button-info-color, $-button-info-active-color, $-button-info-disabled-color);
+    }
+    @include when(warning) {
+      @include button-plain-style($-button-warning-color, $-button-warning-active-color, $-button-warning-disabled-color);
+    }
+    @include when(error) {
+      @include button-plain-style($-button-error-color, $-button-error-active-color, $-button-error-disabled-color);
+    }
+    @include when(suck) {
+      &:active {
+        background: #eee;
+      }
+      @include when(disabled) {
+        background: #fff;
+      }
+    }
+  }
+  
+  @include when(suck) {
+    font-size: $-button-large-fs;
+    height: $-button-suck-height;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+  }
+
+  @include when(block) {
+    width: 100%;
+  }
+
+  @include when(icon) {
+    width: $-button-icon-size;
+    height: $-button-icon-size;
+    padding: 0;
+    line-height: $-button-icon-size;
+    text-align: center;
+    border: none;
+    border-radius: 50%;
+    font-size: 0;
+    color: $-button-icon-color;
+
+    &:active {
+      background: $-button-icon-active-color;
+    }
+    @include when(disabled) {
+      color: $-button-icon-disabled-color;
+      background: transparent;
+
+      &:active {
+        background: transparent;
+      }
+    }
+  }
+
+  @include e(icon) {
+    display: inline-block;
+    margin-right: 2px;
+    font-size: $-button-medium-fs;
+  }
+
+  @include e(txt) {
+    user-select: none;
+  }
+}

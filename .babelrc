@@ -1,0 +1,32 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@vue/babel-preset-jsx"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import"
+  ],
+  "env": {
+    "utils": {
+      "presets": [
+        ["@babel/preset-env", {
+          "loose": true,
+          "modules": "commonjs"
+        }]
+      ],
+      "plugins": [
+        ["module-resolver", {
+          "root": ["buddy-design"],
+          "alias": {
+            "buddy-design/src": "buddy-design/lib",
+            "buddy-design/packages": "buddy-design/lib"
+          }
+        }]
+      ]
+    },
+    "test": {
+      "presets": ["@babel/preset-env"]
+    }
+  }
+}

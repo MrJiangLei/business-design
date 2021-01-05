@@ -1,0 +1,25 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+
+@include b(cell-group) {
+  background-color: #fff;
+
+  @include e(title) {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: $-cell-padding;
+    background: #fff;
+    font-size: $-cell-group-title-fs;
+    color: $-cell-group-title-color;
+    
+    @include halfPixelBorder;
+  }
+  @include e(right) {
+    color: $-cell-group-value-color;
+    font-size: $-cell-group-value-fs;
+  }
+  @include e(body) {
+    background: #fff;
+  }
+}

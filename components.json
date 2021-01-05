@@ -1,0 +1,6 @@
+{
+  "button": "./packages/button/index.js",
+  "toast": "./packages/toast/index.js",
+  "message-box": "./packages/message-box/index.js",
+  "lazyload": "./packages/lazyload/index.js"
+}

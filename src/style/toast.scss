@@ -1,0 +1,69 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+@import './common/transition.scss';
+@import './loading.scss';
+
+@include b(toast) {
+  @include e(modal) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3009;
+  }
+  @include e(container) {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 3010;
+    text-align: center;
+    transition: opacity 0.2s;
+  }
+  @include e(body) {
+    display: inline-block;
+    max-width: calc(100% - #{$-toast-side-padding * 2});
+    padding: $-toast-padding;
+    background-color: $-toast-bg;
+    border-radius: $-toast-radius;
+    color: #fff;
+    text-align: center;
+    font-size: $-toast-fs;
+    box-sizing: border-box;
+  }
+  @include e(msg) {
+    line-height: 1.4285;
+  }
+  @include e(icon) {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: $-toast-icon-size;
+  }
+  @include e(loading) {
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  @include m(middle) {
+    top: 50%;
+    transform: translate3d(0%, -50%, 0);
+  }
+  @include m(top) {
+    top: 50px;
+  }
+  @include m(bottom) {
+    bottom: 50px;
+  }
+  @include m(with-icon) {
+    .wd-toast__body {
+      min-width: $-toast-with-icon-min-width;
+      padding: $-toast-with-icon-padding;
+    }
+  }
+  @include m(loading) {
+    .wd-toast__body {
+      min-width: auto;
+      padding: $-toast-loading-padding;
+    }
+  }
+}

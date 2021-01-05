@@ -1,0 +1,41 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+
+@include b(navbar) {
+  display: flex;
+  width: 100%;
+  height: $-navbar-height;
+  line-height: $-navbar-height;
+  justify-content: space-between;
+  background: $-navbar-bg;
+  color: $-navbar-color;
+
+  @include when(light) {
+    position: relative;
+    background: $-navbar-light-bg;
+    color: $-navbar-light-color;
+
+    @include halfPixelBorder;
+  }
+  @include e(side) {
+    display: block;
+    flex: 1;
+    padding: 0 $-navbar-padding;
+    font-size: $-navbar-side-fs;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @include e(side-left) {
+    text-align: left;
+  }
+  @include e(side-right) {
+    text-align: right;
+  }
+  @include e(title) {
+    display: block;
+    flex: 2;
+    font-size: $-navbar-title-fs;
+    text-align: center;
+    @include lineEllipsis;
+  }
+}

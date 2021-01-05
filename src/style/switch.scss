@@ -1,0 +1,46 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+
+@include b(switch) {
+  display: inline-block;
+  position: relative;
+  width: $-switch-width;
+  height: $-switch-circle-size;
+  border-radius: $-switch-circle-size;
+  border: 1px solid $-switch-border-color;
+  background: $-switch-inactive-color;
+  transition: all .3s;
+  -webkit-tap-highlight-color: transparent;
+
+  @include e(checkbox) {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0;
+  }
+  @include e(circle) {
+    position: absolute;
+    display: inline-block;
+    width: $-switch-circle-size;
+    height: $-switch-circle-size;
+    top: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 50%;
+    transition: left .3s ease-out;
+    box-shadow: 0 2px 4px $-switch-inactive-shadow-color;
+  }
+  @include when(checked) {
+    background: $-switch-active-color;
+    border-color: $-switch-active-color;
+
+    .wd-switch__circle {
+      left: calc(#{$-switch-width - $-switch-circle-size} + 1px);
+      box-shadow: 0 2px 4px $-switch-active-shadow-color
+    }
+  }
+  @include when(disabled) {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,67 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+
+@include b(popup) {
+  position: fixed;
+  max-height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+  transition: transform .3s ease-out;
+
+  @include e(close) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: $-popup-close-color;
+    font-size: $-popup-close-size;
+    transform: rotate(-45deg);
+    -webkit-tap-highlight-color: transparent;
+  }
+  @include m(center) {
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  @include m(left) {
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+  @include m(right) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  @include m(top) {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  @include m(bottom) {
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.wd-popup-slide-top-enter, .wd-popup-slide-top-leave-active {
+  transform: translate3d(0, -100%, 0);
+}
+
+.wd-popup-slide-right-enter, .wd-popup-slide-right-leave-active {
+  transform: translate3d(100%, 0, 0);
+}
+
+.wd-popup-slide-bottom-enter, .wd-popup-slide-bottom-leave-active {
+  transform: translate3d(0, 100%, 0);
+}
+
+.wd-popup-slide-left-enter, .wd-popup-slide-left-leave-active {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.wd-overflow-hidden {
+  overflow: hidden !important;
+}

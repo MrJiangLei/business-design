@@ -1,0 +1,68 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+@import './loading.scss';
+
+@include b(pull-refresh) {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  user-select: none;
+
+  @include e(container) {
+    &.dropping{
+      transition: .2s;
+    }
+  }
+  @include e(top) {
+    height: 50px;
+    margin-top: -50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 0;
+  }
+  @include e(loading) {
+    display: inline-block;
+  }
+  @include e(tip) {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: $-pull-refresh-tip-height;
+    padding: 0 25px;
+    transform: translate3d(-50%, 10px, 0);
+    z-index: 99;
+    line-height: $-pull-refresh-tip-height;    
+    background-color: $-pull-refresh-tip-bg;
+    border-radius: $-pull-refresh-tip-height / 2;
+    color: #fff;
+    font-size: $-pull-refresh-tip-fs;
+    transition: .3s;
+    box-shadow: 0 0 6px #666;
+  }
+  @include e(arrow) {
+    font-size: $-pull-refresh-fs;
+    display: inline-block;
+    margin-right: 6px;
+    color: $-pull-refresh-color;
+    vertical-align: middle;
+  }
+  @include e(text) {
+    font-size: $-pull-refresh-fs;
+    color: $-pull-refresh-color;
+    vertical-align: middle;
+  }
+
+  .wd-slice-down-enter-active {
+    transform: translate3d(-50%, 10px, 0);
+  }
+  .wd-slice-down-enter {
+    transform: translate3d(-50%, -34px, 0);
+  }
+  .wd-slice-down-leave-active {
+    opacity: 1;
+  }
+  .wd-slice-down-leave-to {
+    opacity: 0;
+  }
+}

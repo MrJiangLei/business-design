@@ -1,0 +1,34 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './badge.scss';
+
+@include b(tabbar-item) {
+  display: block;
+  flex: 1;
+  padding: $-tabbar-item-padding;
+  text-align: center;
+  color: $-tabbar-color;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  @include e(icon-container) {
+    position: relative;
+  }
+  @include e(icon) {
+    display: block;
+    margin: 0 auto;
+    width: $-tabbar-icon-size;
+    height: $-tabbar-icon-size;
+    font-size: $-tabbar-icon-size;
+    line-height: initial;
+  }
+  @include e(label) {
+    margin-top: 3px;
+    font-size: $-tabbar-label-fs;
+    line-height: $-tabbar-label-line-height;
+  }
+
+  @include when(active) {
+    color: $-tabbar-active-color;
+  }
+}

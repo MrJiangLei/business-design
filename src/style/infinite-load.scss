@@ -1,0 +1,24 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+
+@include b(infinite-load) {
+  width: 100%;
+  height: $-infinite-load-height;
+  line-height: $-infinite-load-height;
+  text-align: center;
+  color: $-infinite-load-color;
+
+  @include e(indicator) {
+    display: inline-block;
+    width: $-infinite-load-loading-size;
+    height: $-infinite-load-loading-size;
+    line-height: 1.1;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  @include e(text) {
+    display: inline-block;
+    font-size: $-infinite-load-fs;
+  }
+}
