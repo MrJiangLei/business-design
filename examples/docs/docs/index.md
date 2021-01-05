@@ -1,50 +1,46 @@
-## Form 表单组合
+## Index
 
-本章节主要讲如何将多个 form 表单组件进行组合，形成一个完整的表单页面。
+### 使用
 
-常见的 form 表单为`单元格`形式的展示，即左侧为表单的标题描述，右侧为表单的输入。
+图片懒加载使用的是开源组件`vue-lazyload`，其用法同 [vue-lazyload](https://github.com/hilongjw/vue-lazyload)。
 
-其中，`Input 输入框`、`Picker 选择器`和 `DatetimePicker 日期时间选择器`具有`单元格`的展示形式，而 `Checkbox 复选框`、`Radio 单选框`、`InputNumber 计数器`和 `Switch 开关`需要使用 `Cell 单元格`进行包裹使用。
+`buddy-design` 对`vue-lazyload`做了默认参数设置：`loading` 参数默认设置为 `JDM` 占位图，`attempt` 参数设置为 3。
 
-以下表单页面示例使用了 Button、Cell、CellGroup、DatetimePicker、Input、Picker、Radio、RadioGroup、Switch、Toast、MessageBox：
+如果需要修改参数，修改方式如下：
+
+```javascript
+import WotDesign from 'buddy-design'
+
+// lazyload 参数同 vue-lazyload 组件参数
+Vue.use(WotDesign, {
+  lazyload: {
+    loading: 'xxx',
+    attempt: 1
+  }
+})
+```
+
+#### 按需引入
+
+```javascript
+import Vue from 'vue'
+import { Lazyload } from 'buddy-design'
+
+Vue.use(Lazyload)
+
+// 修改参数
+Vue.use(Lazyload, {
+  loading: 'xxx',
+  attempt: 1
+})
+```
+
+### 基本用法
 
 ```html
 <template>
-  <div>
-    <wd-cell-group>
-      <wd-input label="用户名" v-model="username" placeholder="请输入用户名" clearable :error="usernameError" />
-      <wd-input label="密码" v-model="password" placeholder="请输入密码" show-password clearable :error="passwordError" />
-      <wd-cell title="性别">
-        <wd-radio-group v-model="gender" inline>
-          <wd-radio :value="1">男</wd-radio>
-          <wd-radio :value="2">女</wd-radio>
-        </wd-radio-group>
-      </wd-cell>
-      <wd-cell title="是否订阅">
-        <!-- 设置为block展示，避免空格导致单元格高度被空格撑开 -->
-        <wd-switch v-model="subscribe" size="20px" style="display: block;" />
-      </wd-cell>
-      <wd-picker :columns="typeList" v-model="userType" label="注册类型" align-right :error="userTypeError" />
-      <wd-datetime-picker v-model="birthday" label="生日" align-right :error="birthdayError" />
-    </wd-cell-group>
-    <div style="padding: 15px">
-      <wd-button type="primary" block size="large" @click="handleClick">提交</wd-button>
-    </div>
-    <div class="display-item">
-      用户名: {{ username }}
-    </div>
-    <div class="display-item">
-      密码: {{ password }}
-    </div>
-    <div class="display-item">
-      性别: {{ gender }}
-    </div>
-    <div class="display-item">
-      注册类型: {{ userType }}
-    </div>
-    <div class="display-item">
-      生日: {{ birthday }}
-    </div>
+  <div class="lazyload-item" v-for="item in imgs">
+    <img v-lazy="item" class="lazyload-img" />
   </div>
 </template>
 
@@ -52,71 +48,35 @@
 export default {
   data () {
     return {
-      username: '',
-      usernameError: false,
-      password: '',
-      passwordError: false,
-      gender: 1,
-      subscribe: true,
-      typeList: [
-        {
-          label: '类型1',
-          value: 1
-        }, {
-          label: '类型2',
-          value: 2
-        }, {
-          label: '类型3',
-          value: 3
-        }
-      ],
-      userType: '',
-      userTypeError: false,
-      birthday: '',
-      birthdayError: false
-    }
-  },
-  watch: {
-    username () {
-      this.usernameError = false
-    },
-    password () {
-      this.passwordError = false
-    },
-    userType () {
-      this.userTypeError = false
-    },
-    birthday () {
-      this.birthdayError = false
-    }
-  },
-  methods: {
-    handleClick () {
-      const { username, password, userType, birthday } = this
-
-      if (!username || !password || !userType || !birthday) {
-        this.usernameError = !username
-        this.passwordError = !password
-        this.userTypeError = !userType
-        this.birthdayError = !birthday
-        
-        this.$toast.error('有未填的选项')
-        return
-      }
-
-      this.$messageBox.alert('提交成功', '提交提示')
+      imgs: [
+        'http://img30.360buyimg.com/popXue/jfs/t1/33198/10/12030/268559/5ce7cc9fE1ce41ce7/8e87f20e4c0921de.jpg',
+        'http://img30.360buyimg.com/popXue/jfs/t1/50345/6/1100/276789/5ceddedbE88081452/c7cbf2a916e95c89.jpg',
+        'http://img30.360buyimg.com/popXue/jfs/t1/84548/16/579/175470/5cec8a91E5204c180/448fb602fab4f9e1.jpg',
+        'http://img30.360buyimg.com/popXue/jfs/t1/53645/13/1208/168686/5cef2e9dEc4f71846/6650554817be5e76.jpg',
+        'https://img30.360buyimg.com/popXue/jfs/t29878/318/1237453121/304417/d783a160/5cda606bNfef58100.jpg',
+        'https://img30.360buyimg.com/popXue/jfs/t1/48387/5/957/44686/5ceb3fa7Ec141027d/fa71e81772b38d94.jpg',
+        'https://img30.360buyimg.com/popXue/jfs/t1/74919/40/489/306561/5ceb8265E8ed3b685/d94ba1707abe2c42.png'
+      ]
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.display-item {
-  padding: 0 15px;
-  margin-bottom: 10px;
-  color: #999;
+<style>
+.lazyload-item {
+  margin: 20px 0;
+}
+/* 对于图片懒加载，建议固定图片的宽度和高度，一方面避免重排重绘，一方面方便使用默认占位图 */
+/* 同时需要设置 object-fit: cover; 避免占位符非等比变形 */
+.lazyload-img {
+  width: 100%;
+  height: 36.5vw;
+  border-radius: 8px;
+  object-fit: cover;
 }
 </style>
 ```
 
-> 在 `CellGroup 组件` 中，每个 Cell 组件都有0.5像素的下边框，最后1个 Cell 组件会自动判断并去掉下边框，只有支持 Cell 类型的组件才支持这种判断。
+### 参数、指令、其他语法
+
+见 `vue-lazyload` [文档](https://github.com/hilongjw/vue-lazyload)

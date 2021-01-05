@@ -1,4 +1,4 @@
-## DatetimePicker 日期时间选择器
+## Details
 
 为 PickerView 组件的封装，在其内部构建好日期时间选项。
 
